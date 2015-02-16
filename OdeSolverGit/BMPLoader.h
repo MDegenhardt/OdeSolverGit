@@ -20,7 +20,6 @@
 #include <boost/numeric/ublas/matrix.hpp>
 
 
-
 #pragma pack(2)
 //size == 3byte
 typedef struct

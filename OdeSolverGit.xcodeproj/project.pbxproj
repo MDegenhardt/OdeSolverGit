@@ -25,6 +25,30 @@
 /* Begin PBXFileReference section */
 		287EF6951A927F2A009CDC25 /* OdeSolverGit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OdeSolverGit; sourceTree = BUILT_PRODUCTS_DIR; };
 		287EF6981A927F2A009CDC25 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		28E997CB1A9280E7007BEAC4 /* autoderiv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autoderiv.h; sourceTree = "<group>"; };
+		28E997CC1A9280E7007BEAC4 /* BMPLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMPLoader.h; sourceTree = "<group>"; };
+		28E997CD1A9280E7007BEAC4 /* ButcherTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButcherTable.h; sourceTree = "<group>"; };
+		28E997CE1A9280E7007BEAC4 /* Definitions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Definitions.h; sourceTree = "<group>"; };
+		28E997CF1A9280E7007BEAC4 /* Dopri5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dopri5.h; sourceTree = "<group>"; };
+		28E997D01A9280E7007BEAC4 /* Euler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Euler.h; sourceTree = "<group>"; };
+		28E997D11A9280E7007BEAC4 /* ExampleFunctors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleFunctors.h; sourceTree = "<group>"; };
+		28E997D21A9280E7007BEAC4 /* Fehlberg78.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fehlberg78.h; sourceTree = "<group>"; };
+		28E997D31A9280E7007BEAC4 /* GaussFieldFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GaussFieldFunctor.h; sourceTree = "<group>"; };
+		28E997D41A9280E7007BEAC4 /* GaussPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GaussPicture.h; sourceTree = "<group>"; };
+		28E997D51A9280E7007BEAC4 /* implicit_euler_ad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implicit_euler_ad.h; sourceTree = "<group>"; };
+		28E997D61A9280E7007BEAC4 /* implicit_euler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implicit_euler.h; sourceTree = "<group>"; };
+		28E997D71A9280E7007BEAC4 /* integrate_adaptive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = integrate_adaptive.h; sourceTree = "<group>"; };
+		28E997D81A9280E7007BEAC4 /* integrate_const.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = integrate_const.h; sourceTree = "<group>"; };
+		28E997D91A9280E7007BEAC4 /* IntersectionFunctors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntersectionFunctors.h; sourceTree = "<group>"; };
+		28E997DA1A9280E7007BEAC4 /* newton_raphson_ad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newton_raphson_ad.h; sourceTree = "<group>"; };
+		28E997DB1A9280E7007BEAC4 /* newton_raphson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newton_raphson.h; sourceTree = "<group>"; };
+		28E997DC1A9280E7007BEAC4 /* NonlinearFunctors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NonlinearFunctors.h; sourceTree = "<group>"; };
+		28E997DD1A9280E7007BEAC4 /* OdeSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OdeSolver.h; sourceTree = "<group>"; };
+		28E997DE1A9280E7007BEAC4 /* PicturePlane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicturePlane.h; sourceTree = "<group>"; };
+		28E997DF1A9280E7007BEAC4 /* Raindrop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Raindrop.h; sourceTree = "<group>"; };
+		28E997E01A9280E7007BEAC4 /* runExamples.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = runExamples.h; sourceTree = "<group>"; };
+		28E997E11A9280E7007BEAC4 /* RungeKutta4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RungeKutta4.h; sourceTree = "<group>"; };
+		28E997E21A9280E7007BEAC4 /* RungeKutta14.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RungeKutta14.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +82,64 @@
 			isa = PBXGroup;
 			children = (
 				287EF6981A927F2A009CDC25 /* main.cpp */,
+				28E997CE1A9280E7007BEAC4 /* Definitions.h */,
+				28E997DD1A9280E7007BEAC4 /* OdeSolver.h */,
+				28E997E31A9282E7007BEAC4 /* Examples */,
+				28E997E41A9282F0007BEAC4 /* integrate */,
+				28E997E51A9282FA007BEAC4 /* stepper */,
+				28E997E61A928304007BEAC4 /* util */,
 			);
 			path = OdeSolverGit;
+			sourceTree = "<group>";
+		};
+		28E997E31A9282E7007BEAC4 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				28E997E01A9280E7007BEAC4 /* runExamples.h */,
+				28E997D11A9280E7007BEAC4 /* ExampleFunctors.h */,
+				28E997D31A9280E7007BEAC4 /* GaussFieldFunctor.h */,
+				28E997D41A9280E7007BEAC4 /* GaussPicture.h */,
+				28E997D91A9280E7007BEAC4 /* IntersectionFunctors.h */,
+				28E997DC1A9280E7007BEAC4 /* NonlinearFunctors.h */,
+				28E997DE1A9280E7007BEAC4 /* PicturePlane.h */,
+				28E997DF1A9280E7007BEAC4 /* Raindrop.h */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
+		28E997E41A9282F0007BEAC4 /* integrate */ = {
+			isa = PBXGroup;
+			children = (
+				28E997D71A9280E7007BEAC4 /* integrate_adaptive.h */,
+				28E997D81A9280E7007BEAC4 /* integrate_const.h */,
+			);
+			name = integrate;
+			sourceTree = "<group>";
+		};
+		28E997E51A9282FA007BEAC4 /* stepper */ = {
+			isa = PBXGroup;
+			children = (
+				28E997CD1A9280E7007BEAC4 /* ButcherTable.h */,
+				28E997CF1A9280E7007BEAC4 /* Dopri5.h */,
+				28E997D01A9280E7007BEAC4 /* Euler.h */,
+				28E997D21A9280E7007BEAC4 /* Fehlberg78.h */,
+				28E997D51A9280E7007BEAC4 /* implicit_euler_ad.h */,
+				28E997D61A9280E7007BEAC4 /* implicit_euler.h */,
+				28E997E11A9280E7007BEAC4 /* RungeKutta4.h */,
+				28E997E21A9280E7007BEAC4 /* RungeKutta14.h */,
+			);
+			name = stepper;
+			sourceTree = "<group>";
+		};
+		28E997E61A928304007BEAC4 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				28E997CB1A9280E7007BEAC4 /* autoderiv.h */,
+				28E997CC1A9280E7007BEAC4 /* BMPLoader.h */,
+				28E997DA1A9280E7007BEAC4 /* newton_raphson_ad.h */,
+				28E997DB1A9280E7007BEAC4 /* newton_raphson.h */,
+			);
+			name = util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +282,11 @@
 		287EF69D1A927F2A009CDC25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/Cellar/boost/1.56.0/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -209,6 +294,11 @@
 		287EF69E1A927F2A009CDC25 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/Cellar/boost/1.56.0/include,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -232,6 +322,7 @@
 				287EF69E1A927F2A009CDC25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
