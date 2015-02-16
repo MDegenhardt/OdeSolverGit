@@ -85,7 +85,8 @@ public:
         
         RGB pix;
         int pixInLine;
-        
+        // Schleife parallelisieren (dynamic: wenn ein Thread fertig ist, neue Iteration holen)
+#pragma omp parallel for schedule(dynamic)
         for (int y=0; y<bih.biHeight; y++) {
             // wievieltes pixel in einer Zeile (fuer padding)
             pixInLine = 0;
@@ -134,6 +135,7 @@ public:
         RGB pix;
         int pixInLine;
         int k = 0;
+        #pragma omp parallel for schedule(dynamic)
         for (int y=0; y<bih.biHeight; y++) {
             // wievieltes pixel in einer Zeile (fuer padding)
             pixInLine = 0;
@@ -166,6 +168,7 @@ public:
         RGB pix, newPix;
         int k = 0;
         double sum = 0;
+        #pragma omp parallel for schedule(dynamic)
         for (int j=0; j<bih.biHeight; j++) {
             
             for (int i=0; i<bih.biWidth; i++) {
@@ -240,6 +243,7 @@ public:
         //Pixel zuerst in Matrix uebertragen
         boost::numeric::ublas::matrix<RGB> xyPixPlaneORG(bih.biWidth, bih.biHeight); 
         int k = 0;
+        #pragma omp parallel for schedule(dynamic)
         for (int y=0; y<bih.biHeight; y++) {
             for (int x=0; x<bih.biWidth; x++) {
                 xyPixPlaneORG(x,y) = pxVec[k];
@@ -257,6 +261,7 @@ public:
         blackPix.rgbGreen = 0;
         blackPix.rgbRed = 0;
         int l = 0;
+        #pragma omp parallel for schedule(dynamic)
         for (int y=0; y<bih.biHeight; y++) {
             for (int x=0; x<bih.biWidth; x++) {
                 xyPixPlaneNEW(x,y) = blackPix;
@@ -272,7 +277,7 @@ public:
         state_type_double intersectionPoint2d(3);
         std::cout.precision(2);
         std::cout << "Progress: " << std::fixed << 0.00 << "%" << "\n";
-        
+        #pragma omp parallel for schedule(dynamic)
         for (int y=0; y<bih.biHeight; y++) {
             
             for (int x=0; x<bih.biWidth; x++) {
@@ -340,6 +345,7 @@ public:
         //pixel in Vektor schreiben
         std::vector<RGB> retVec(bih.biHeight*bih.biWidth);
         int m=0;
+        #pragma omp parallel for schedule(dynamic)
         for (int y=0; y<bih.biHeight; y++) {
             for (int x=0; x<bih.biWidth; x++) {
                 retVec[m] = xyPixPlaneNEW(x,y);
