@@ -17,15 +17,15 @@
 template<class System, class System2, class State>
 size_t newton_raphson(System Sysx, System2 Sysdxdt, State& x, bool consoleOutput = false, size_t maxIterations = 1000, double epsilon = 1e-8){
     
-    size_t state_vec_size = x.size();
+    size_t state_vec_size = x.size(); 
     size_t maxIterationCount = 0;
 
     //Iterationen fuer jede Funktion
-    size_t iterationCount[state_vec_size];
+    size_t* iterationCount = new size_t[state_vec_size];
     
     bool allCalculated = false;
     //ist die gewuenschte Genauigkeit (epsilon) der einzelnen Funktionen erreicht?
-    bool isCalculated[state_vec_size];
+    bool* isCalculated = new bool[state_vec_size];
     for (int i=0; i<state_vec_size; i++) {
         isCalculated[i] = false;
         iterationCount[i] = 0;
@@ -172,6 +172,8 @@ size_t newton_raphson(System Sysx, System2 Sysdxdt, State& x, bool consoleOutput
 
 //    write_file.close();
 
+	delete[] iterationCount;
+	delete[] isCalculated;
     
     return maxIterationCount;
     

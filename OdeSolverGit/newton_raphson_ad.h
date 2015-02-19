@@ -24,11 +24,11 @@ size_t newton_raphson_ad(System Sysx, State& x, bool consoleOutput = false, size
     size_t maxIterationCount = 0;
     
     //Iterationen fuer jede Funktion
-    size_t iterationCount[state_vec_size];
+	size_t* iterationCount = new size_t[state_vec_size];
     
     bool allCalculated = false;
     //ist die gewuenschte Genauigkeit (epsilon) der einzelnen Funktionen erreicht?
-    bool isCalculated[state_vec_size];
+	bool* isCalculated = new bool[state_vec_size];
     for (int i=0; i<state_vec_size; i++) {
         isCalculated[i] = false;
         iterationCount[i] = 0;
@@ -206,7 +206,8 @@ size_t newton_raphson_ad(System Sysx, State& x, bool consoleOutput = false, size
         write_file.close();
     }
     
-    
+	delete[] iterationCount;
+	delete[] isCalculated;
     
     return maxIterationCount;
     
