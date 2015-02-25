@@ -94,7 +94,7 @@ void runExamples(){
     //Newton 1 Gleichung
     state_type_double n1(1);
     n1[0] = 1.0;
-    nonlinear_function1<RallNo<double>, RallNo<double>> fx1;
+    nonlinear_function1<RallNo<double>, RallNo<double> > fx1;
     size_t maxIterations1 = newton_raphson_ad(fx1, n1, false, 1000, 1e-8);
     
     //Valarray
@@ -113,7 +113,7 @@ void runExamples(){
     implicit_system1<double> fxI;
     implicit_system1derivate<double> fxdxI;
     
-    implicit_system1_ad<RallNo<double>, RallNo<double>> fxIad;
+    implicit_system1_ad<RallNo<double>, RallNo<double> > fxIad;
     
     size_t stepsImp = implicit_euler(fxI, fxdxI, xImp2, 0.0, 5.0, 0.001, false, false);
     

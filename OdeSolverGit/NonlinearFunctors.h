@@ -55,7 +55,7 @@ public:
 template <class T>
 class complex_nonlinear_system1{
 public:
-    void operator()(const std::vector<std::complex<T>>& x, std::vector<std::complex<T>>& fx){
+    void operator()(const std::vector<std::complex<T> >& x, std::vector<std::complex<T> >& fx){
         //f(x)=1-2/x^2
         fx[0] = cdouble(1)-cdouble(2)/(x[0]*x[0]);
         //f(x)=x^2-612
@@ -68,7 +68,7 @@ public:
 template <class T>
 class complex_nonlinear_system1derivate{
 public:
-    void operator()(const std::vector<std::complex<T>>& x, std::vector<std::complex<T>>& fx){
+    void operator()(const std::vector<std::complex<T> >& x, std::vector<std::complex<T> >& fx){
         //f'(x)=4/x^3
         fx[0] = cdouble(4)/(x[0]*x[0]*x[0]);
         //f'(x)=2x

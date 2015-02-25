@@ -30,14 +30,14 @@ void runGaussPicture(){
     
     std::vector<RGB> pixelsRead;
     BMPLoader b;
-    int idx = 5;
+    int idx = 0;
     
     //Bild importieren
     pixelsRead = b.loadBMP((filename[idx]).c_str());
     
     //Bild bearbeiten (Werte in BMPLoader einstellen)
     std::vector<RGB> pxBW = b.makeGaussPicture(pixelsRead, newFilename[idx]);
-//    std::vector<RGB> pxBW = b.makeBlackAndWhite(px);
+//    std::vector<RGB> pxBW = b.makeBlackAndWhite(pixelsRead);
     
     //Bild schreiben
     b.writeBMP(pxBW, (newFilename[idx]).c_str());

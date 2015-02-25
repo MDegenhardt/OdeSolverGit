@@ -16,8 +16,8 @@
 
 
 typedef std::vector<double> state_type_double;
-typedef std::vector<RallNo<double>> state_type_rall_double;
-typedef std::vector<std::complex<double>> state_type_complex;
+typedef std::vector<RallNo<double> > state_type_rall_double;
+typedef std::vector<std::complex<double> > state_type_complex;
 typedef std::complex<double> cdouble;
 typedef std::valarray<double> val_array;
 

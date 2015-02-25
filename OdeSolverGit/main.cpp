@@ -64,7 +64,7 @@ int main(int argc, const char * argv[])
     //Stepper initialisieren
     RungeKutta4 rk4gK3d(nameRK4K3d.str());
     // Strahl durch Integration berechnen
-    size_t stepsGaussK3d = integrate_const(rk4gK3d, gaussField3d, rayState3d, 0.0, 5.0, 0.5, false, true);
+    size_t stepsGaussK3d = integrate_const(rk4gK3d, gaussField3d, rayState3d, 0.0, 5.0, 0.5, false, false);
     
     
     // *** Strahl im Gauss-Feld mit Schnittpunktberechnung ***

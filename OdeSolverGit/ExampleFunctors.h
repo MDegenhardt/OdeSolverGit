@@ -47,7 +47,7 @@ public:
 template <class T>
 class first_order_system_complex{
 public:
-    void operator()(const std::vector<std::complex<T>> &x, std::vector<std::complex<T>> &dxdt, const T /* t */){
+    void operator()(const std::vector<std::complex<T> > &x, std::vector<std::complex<T> > &dxdt, const T /* t */){
         dxdt[0] = x[0];
     }
 };
@@ -55,7 +55,7 @@ public:
 template <class T>
 class second_order_system_complex{
 public:
-    void operator()(const std::vector<std::complex<T>> &x, std::vector<std::complex<T>> &dxdt, const T /* t */){
+    void operator()(const std::vector<std::complex<T> > &x, std::vector<std::complex<T> > &dxdt, const T /* t */){
         dxdt[0] = x[1];
         dxdt[1] = -x[0];
     }

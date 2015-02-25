@@ -19,6 +19,9 @@
 // boost ublas-matrix
 #include <boost/numeric/ublas/matrix.hpp>
 
+#define NUMOFTHREADS 4
+#define SCHEDULETYPE static
+
 
 #pragma pack(2)
 //size == 3byte
@@ -85,8 +88,6 @@ public:
         
         RGB pix;
         int pixInLine;
-        // Schleife parallelisieren (dynamic: wenn ein Thread fertig ist, neue Iteration holen)
-#pragma omp parallel for schedule(dynamic)
         for (int y=0; y<bih.biHeight; y++) {
             // wievieltes pixel in einer Zeile (fuer padding)
             pixInLine = 0;
@@ -95,6 +96,7 @@ public:
                 
                 input.read((char*)&pix, sizeof(pix));
                 //                 printf( "PixelR %d: %3d %3d %3d\n", i+1, pix.rgbRed, pix.rgbGreen, pix.rgbBlue );
+//                RGB dummy; dummy.rgbRed = 0; dummy.rgbGreen = 0; dummy.rgbBlue = 0;
                 
                 pixInLine += sizeof(RGB);
                 pixels.push_back(pix);
@@ -135,7 +137,6 @@ public:
         RGB pix;
         int pixInLine;
         int k = 0;
-        #pragma omp parallel for schedule(dynamic)
         for (int y=0; y<bih.biHeight; y++) {
             // wievieltes pixel in einer Zeile (fuer padding)
             pixInLine = 0;
@@ -168,7 +169,9 @@ public:
         RGB pix, newPix;
         int k = 0;
         double sum = 0;
-        #pragma omp parallel for schedule(dynamic)
+        // Schleife parallelisieren (dynamic: wenn ein Thread fertig ist, neue Iteration holen)
+        #pragma  omp_set_num_threads(NUMOFTHREADS)
+        #pragma omp parallel for schedule(SCHEDULETYPE)
         for (int j=0; j<bih.biHeight; j++) {
             
             for (int i=0; i<bih.biWidth; i++) {
@@ -241,14 +244,13 @@ public:
         fourth_order_system_sphere_offset_3D<double> sphere_off_3D(xOffsetGauss, yOffsetGauss, zOffsetGauss, aFactorGauss, bFactorGauss);
         
         //Pixel zuerst in Matrix uebertragen
-        boost::numeric::ublas::matrix<RGB> xyPixPlaneORG(bih.biWidth, bih.biHeight); 
-        int k = 0;
-        #pragma omp parallel for schedule(dynamic)
+        boost::numeric::ublas::matrix<RGB> xyPixPlaneORG(bih.biWidth, bih.biHeight);
+        #pragma  omp_set_num_threads(NUMOFTHREADS)
+        #pragma omp parallel for schedule(SCHEDULETYPE)
         for (int y=0; y<bih.biHeight; y++) {
             for (int x=0; x<bih.biWidth; x++) {
-                xyPixPlaneORG(x,y) = pxVec[k];
-                k++;
-                //                printf( "PxPlane %d: %3d %3d %3d\n", k, xyPixPlane(x,y).rgbRed, xyPixPlane(x,y).rgbGreen, xyPixPlane(x,y).rgbBlue );
+                int nrOfPixel = y*bih.biWidth + x;
+                xyPixPlaneORG(x,y) = pxVec[nrOfPixel];
             }
         }
         
@@ -261,12 +263,11 @@ public:
         blackPix.rgbGreen = 0;
         blackPix.rgbRed = 0;
         int l = 0;
-        #pragma omp parallel for schedule(dynamic)
+        #pragma  omp_set_num_threads(NUMOFTHREADS)
+        #pragma omp parallel for schedule(SCHEDULETYPE)
         for (int y=0; y<bih.biHeight; y++) {
             for (int x=0; x<bih.biWidth; x++) {
                 xyPixPlaneNEW(x,y) = blackPix;
-                //                printf( "PxPlaneNEW %d: %3d %3d %3d\n", l+1, xyPixPlaneNEW(x,y).rgbRed, xyPixPlaneNEW(x,y).rgbGreen, xyPixPlaneNEW(x,y).rgbBlue );
-                l++;
             }
         }
         
@@ -277,9 +278,10 @@ public:
         state_type_double intersectionPoint2d(3);
         std::cout.precision(2);
         std::cout << "Progress: " << std::fixed << 0.00 << "%" << "\n";
-        #pragma omp parallel for schedule(dynamic)
+        
+        #pragma  omp_set_num_threads(NUMOFTHREADS)
+        #pragma omp parallel for schedule(SCHEDULETYPE)
         for (int y=0; y<bih.biHeight; y++) {
-            
             for (int x=0; x<bih.biWidth; x++) {
 
                 //Start-Bedingungen: [px0, py0, pz0, x0, y0, z0]
@@ -339,26 +341,23 @@ public:
             std::cout.precision(2);
             std::cout << "Progress: " << std::fixed << (double)(y+1)/(double)bih.biHeight*100 << "%" << "\n";
             
-            
         }
         
         //pixel in Vektor schreiben
         std::vector<RGB> retVec(bih.biHeight*bih.biWidth);
-        int m=0;
-        #pragma omp parallel for schedule(dynamic)
+        #pragma  omp_set_num_threads(NUMOFTHREADS)
+        #pragma omp parallel for schedule(SCHEDULETYPE)
         for (int y=0; y<bih.biHeight; y++) {
             for (int x=0; x<bih.biWidth; x++) {
-                retVec[m] = xyPixPlaneNEW(x,y);
+                int nrOfPixel = y*bih.biWidth + x;
+                retVec[nrOfPixel] = xyPixPlaneNEW(x,y);
                 //                printf( "PixelRet %d: %3d %3d %3d\n", m, retVec[m].rgbRed, retVec[m].rgbGreen, retVec[m].rgbBlue );
-                m++;
             }
         }
         
         return retVec;
         
-    }
-    
-    
+    } 
     
 };
 

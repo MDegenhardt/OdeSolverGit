@@ -67,7 +67,7 @@ public:
         while (F < 0 ) {
             iterationCount++;
             if (iterationCount > n) {
-                std::cout << "Ray returned \n";
+//                std::cout << "Ray returned \n";
                 rayReturned = true;
                 break;
             }
@@ -99,7 +99,7 @@ public:
             
             // *** 2. Funktion F(s) definieren ***
             // die beiden Punkte und den Radius benutzen, um die Funktion F(s) zu definieren
-            intersectionEquationPlane3d<RallNo<double>, RallNo<double>>  Fs(xInArea, xOutOfArea, z_ncp);
+            intersectionEquationPlane3d<RallNo<double>, RallNo<double> >  Fs(xInArea, xOutOfArea, z_ncp);
             
             // *** 3. Newton-Verfahren mit AD anwenden ***
             // Startpunkt des Newton-Verfahrens waehlen

@@ -100,7 +100,7 @@ public:
         // *** 2. Funktion F(s) definieren ***
 
         // die beiden Punkte und den Radius benutzen, um die Funktion F(s) zu definieren
-        intersectionEquation<RallNo<double>, RallNo<double>>  Fs(xInCircle, xOutOfCircle, mRadius);
+        intersectionEquation<RallNo<double>, RallNo<double> >  Fs(xInCircle, xOutOfCircle, mRadius);
         
         // *** 3. Newton-Verfahren mit AD anwenden ***
         
