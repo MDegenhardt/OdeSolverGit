@@ -67,7 +67,7 @@ public:
         while (F < 0 ) {
             iterationCount++;
             if (iterationCount > n) {
-//                std::cout << "Ray returned \n";
+                std::cout << "Ray returned \n";
                 rayReturned = true;
                 break;
             }

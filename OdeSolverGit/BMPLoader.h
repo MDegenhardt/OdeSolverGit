@@ -19,8 +19,10 @@
 // boost ublas-matrix
 #include <boost/numeric/ublas/matrix.hpp>
 
-#define NUMOFTHREADS 4
-#define SCHEDULETYPE static
+#define NUMOFTHREADS 8
+#define SCHEDULETYPE dynamic
+#define CHUNKSIZE 20 // -> alle Bloecke haben die gleiche size und werden auf die threads verteilt
+
 
 
 #pragma pack(2)
@@ -169,9 +171,8 @@ public:
         RGB pix, newPix;
         int k = 0;
         double sum = 0;
-        // Schleife parallelisieren (dynamic: wenn ein Thread fertig ist, neue Iteration holen)
-        #pragma  omp_set_num_threads(NUMOFTHREADS)
-        #pragma omp parallel for schedule(SCHEDULETYPE)
+        // Schleife parallelisieren
+        #pragma omp parallel for schedule(SCHEDULETYPE, CHUNKSIZE) num_threads(4)
         for (int j=0; j<bih.biHeight; j++) {
             
             for (int i=0; i<bih.biWidth; i++) {
@@ -245,8 +246,8 @@ public:
         
         //Pixel zuerst in Matrix uebertragen
         boost::numeric::ublas::matrix<RGB> xyPixPlaneORG(bih.biWidth, bih.biHeight);
-        #pragma  omp_set_num_threads(NUMOFTHREADS)
-        #pragma omp parallel for schedule(SCHEDULETYPE)
+
+        #pragma omp parallel for schedule(SCHEDULETYPE,CHUNKSIZE) num_threads(NUMOFTHREADS)
         for (int y=0; y<bih.biHeight; y++) {
             for (int x=0; x<bih.biWidth; x++) {
                 int nrOfPixel = y*bih.biWidth + x;
@@ -263,8 +264,8 @@ public:
         blackPix.rgbGreen = 0;
         blackPix.rgbRed = 0;
         int l = 0;
-        #pragma  omp_set_num_threads(NUMOFTHREADS)
-        #pragma omp parallel for schedule(SCHEDULETYPE)
+
+        #pragma omp parallel for schedule(SCHEDULETYPE,CHUNKSIZE) num_threads(NUMOFTHREADS)
         for (int y=0; y<bih.biHeight; y++) {
             for (int x=0; x<bih.biWidth; x++) {
                 xyPixPlaneNEW(x,y) = blackPix;
@@ -279,8 +280,7 @@ public:
         std::cout.precision(2);
         std::cout << "Progress: " << std::fixed << 0.00 << "%" << "\n";
         
-        #pragma  omp_set_num_threads(NUMOFTHREADS)
-        #pragma omp parallel for schedule(SCHEDULETYPE)
+        #pragma omp parallel for ordered schedule(SCHEDULETYPE,CHUNKSIZE) num_threads(NUMOFTHREADS)
         for (int y=0; y<bih.biHeight; y++) {
             for (int x=0; x<bih.biWidth; x++) {
 
@@ -333,6 +333,8 @@ public:
                     xyPixPlaneNEW(floor(xSP+0.5), floor(ySP+0.5)).rgbGreen = ((xyPixPlaneNEW(floor(xSP+0.5), floor(ySP+0.5)).rgbGreen + xyPixPlaneORG(x,y).rgbGreen))/2.0;
                     
                 }
+                // Schreibvorgang nacheinander, sonst nicht eindeutig
+                #pragma omp ordered
                 xyPixPlaneNEW(floor(xSP+0.5), floor(ySP+0.5)) = xyPixPlaneORG(x,y);
                 std::cout.precision(0);
                 //                std::cout << "(X,Y) = (" << std::fixed << (int)floor(xSP+0.5)+1 << "," << (int)floor(ySP+0.5)+1 << ")\n";
@@ -345,8 +347,8 @@ public:
         
         //pixel in Vektor schreiben
         std::vector<RGB> retVec(bih.biHeight*bih.biWidth);
-        #pragma  omp_set_num_threads(NUMOFTHREADS)
-        #pragma omp parallel for schedule(SCHEDULETYPE)
+
+        #pragma omp parallel for schedule(SCHEDULETYPE,CHUNKSIZE) num_threads(NUMOFTHREADS)
         for (int y=0; y<bih.biHeight; y++) {
             for (int x=0; x<bih.biWidth; x++) {
                 int nrOfPixel = y*bih.biWidth + x;
